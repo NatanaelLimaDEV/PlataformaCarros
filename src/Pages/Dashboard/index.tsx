@@ -7,7 +7,6 @@ import {
   deleteDoc,
   doc,
   getDocs,
-  orderBy,
   query,
   where,
 } from "firebase/firestore";
@@ -72,7 +71,15 @@ export default function Dashboard() {
 
   async function handleDeleteCar(car: CarsProps) {
     const docRef = doc(db, "cars", car.id);
-    await deleteDoc(docRef);
+    await deleteDoc(docRef)
+    .then(() => {
+      toast.success("Carro removido com sucesso!");
+    })
+    .catch((err) => {
+      toast.success("Erro ao remover carro!");
+      console.log(err);
+      
+    })
 
     car.images.map(async (image) => {
       const imagePath = `images/${image.uid}/${image.name}`;
@@ -81,7 +88,6 @@ export default function Dashboard() {
       try {
         await deleteObject(imageRef);
         setCars(cars.filter((itemCar) => itemCar.id !== car.id));
-        toast.success("Carro removido com sucesso!");
       } catch (err) {
         console.log("Erro ao excluir essa imagem!");
       }

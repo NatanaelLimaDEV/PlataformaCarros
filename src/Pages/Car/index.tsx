@@ -10,12 +10,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { db } from "../../Services/firebaseConnection";
 import Container from "../../Components/Container";
-import {
-  FaLocationArrow,
-  FaMapPin,
-  FaSpinner,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FiMail, FiMapPin, FiUser } from "react-icons/fi";
@@ -181,7 +176,9 @@ export default function CarDetail() {
               href={`https://api.whatsapp.com/send?phone=${car?.whatsapp}&text=Olá vi esse ${car?.name} no site WebCarros e fiquei interessado!`}
               target="_blank"
               className="w-full flex items-center justify-center bg-red-500 text-white font-medium rounded-lg h-10 mt-4"
-            >Tenho Interesse</a>
+            >
+              Tenho Interesse
+            </a>
           </main>
           <main className="w-full bg-white rounded-lg p-6 my-4">
             <p className="text-xs font-medium text-zinc-400">

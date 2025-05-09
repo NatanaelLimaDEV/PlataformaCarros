@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Container from "../../Components/Container";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { Input } from "../../Components/Input";
@@ -45,19 +45,9 @@ const schemaPassword = z
 type FormDataUser = z.infer<typeof schemaDataUser>;
 type FormDataPassword = z.infer<typeof schemaPassword>;
 
-interface userProps {
-  name: string;
-  email: string;
-  uid: string;
-  contact: string | number;
-  city: string;
-  address: string;
-}
-
 export default function User() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [userData, setUserData] = useState<userProps[]>([]);
 
   const {
     register: registerUser,
@@ -73,7 +63,6 @@ export default function User() {
     register: registerPassword,
     handleSubmit: handleSubmitPassword,
     formState: { errors: errorsPassword },
-    reset: resetPassword,
   } = useForm<FormDataPassword>({
     resolver: zodResolver(schemaPassword),
     mode: "onChange",

@@ -129,7 +129,7 @@ export default function Home() {
         <main className="w-full flex flex-col items-center justify-center gap-4">
           <img src={ilustreCar} className="mt-10 w-50" />
           <h1 className="font-bold text-center mt-6 text-2xl mb-4 text-zinc-600">
-            Nenhum carro cadastrado
+            {searchR ? "" : "Nenhum carro cadastrado"}
           </h1>
         </main>
       ) : (
